@@ -3,11 +3,19 @@
 :root {
   --background: #fafafa;
   --foreground: #272221;
+  --text: #574f4d;
+  --title: #272221;
+  --selection-bg: #ebe5f9;
+  --selection-text: #403937;
 }
 
 .dark {
   --background: #0d0d11;
   --foreground: #f5f5f5;
+  --text: #e7e7e7;
+  --title: #fdfdfd;
+  --selection-bg: #4b2995;
+  --selection-text: #fdfdfd;
 }
 
 @theme inline {
@@ -17,38 +25,22 @@
 
 body {
   background: var(--background);
-  color: #574f4d;
+  color: var(--text);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-.dark body {
-  background: var(--background);
-  color: var(--foreground);
 }
 
 h1,
 h2,
 h3 {
-  color: #272221;
+  color: var(--title);
   font-family: var(--font-title), var(--font-body), sans-serif;
   letter-spacing: -0.02em;
 }
 
-.dark h1,
-.dark h2,
-.dark h3 {
-  color: var(--foreground);
-}
-
 ::selection {
-  background: #ebe5f9;
-  color: #403937;
-}
-
-.dark ::selection {
-  background: #4b2995;
-  color: #fdfdfd;
+  background: var(--selection-bg);
+  color: var(--selection-text);
 }
 
 button {

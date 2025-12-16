@@ -55,7 +55,7 @@ export default function Home() {
     <div className='space-y-12 pb-10'>
       <section className='relative overflow-hidden rounded-[32px] bg-white px-6 py-12 shadow-2xl md:px-10 dark:bg-zinc-900'>
         <div
-          className='absolute inset-0 bg-gradient-to-r from-base-background via-base-background to-brand-yellow/15 dark:hidden'
+          className='absolute inset-0 bg-red from-base-background via-base-background to-brand-yellow/15 dark:hidden'
           aria-hidden
         />
         <div
