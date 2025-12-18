@@ -22,10 +22,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang='pt-BR' className={`${baloo.variable} ${roboto.variable}`}>
-      <body className='min-h-dvh bg-base-background text-base-text dark:bg-zinc-900 dark:text-zinc-50'>
+      <body className='min-h-dvh bg-base-background text-base-text overflow-x-hidden'>
         <CartProvider>
           <Header />
-          <main className='mx-auto w-full max-w-6xl px-4 py-5'>{children}</main>
+          <main className='mx-auto w-full sm:max-w-7xl px-0 sm:px-5 py-6 sm:py-6'>
+            {children}
+          </main>
         </CartProvider>
       </body>
     </html>

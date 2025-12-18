@@ -4,13 +4,28 @@ import type { Coffee } from '@/data/coffees';
 import React, { createContext, useContext, useMemo, useReducer } from 'react';
 
 type CartItem = { coffee: Coffee; quantity: number };
-type State = { items: Record<number, CartItem> };
+type DeliveryInfo = {
+  cep: string;
+  street: string;
+  number: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+};
+type State = {
+  items: Record<number, CartItem>;
+  delivery?: DeliveryInfo;
+  paymentMethod?: 'credit' | 'debit' | 'cash';
+};
 
 type Action =
   | { type: 'ADD'; coffee: Coffee; qty: number }
   | { type: 'SET_QTY'; id: number; qty: number }
   | { type: 'REMOVE'; id: number }
-  | { type: 'CLEAR' };
+  | { type: 'CLEAR' }
+  | { type: 'SET_DELIVERY'; delivery: DeliveryInfo }
+  | { type: 'SET_PAYMENT'; method: 'credit' | 'debit' | 'cash' };
 
 type CartContextValue = {
   state: State;
@@ -18,6 +33,8 @@ type CartContextValue = {
   setQty: (id: number, qty: number) => void;
   remove: (id: number) => void;
   clear: () => void;
+  setDelivery: (delivery: DeliveryInfo) => void;
+  setPaymentMethod: (method: 'credit' | 'debit' | 'cash') => void;
   totalItems: number;
   subtotalCents: number;
 };
@@ -31,6 +48,7 @@ function reducer(state: State, action: Action): State {
       const nextQty = (existing?.quantity ?? 0) + action.qty;
 
       return {
+        ...state,
         items: {
           ...state.items,
           [action.coffee.id]: { coffee: action.coffee, quantity: nextQty },
@@ -41,12 +59,13 @@ function reducer(state: State, action: Action): State {
     case 'SET_QTY': {
       if (action.qty <= 0) {
         const { [action.id]: _removed, ...rest } = state.items;
-        return { items: rest };
+        return { ...state, items: rest };
       }
       const existing = state.items[action.id];
       if (!existing) return state;
 
       return {
+        ...state,
         items: {
           ...state.items,
           [action.id]: { ...existing, quantity: action.qty },
@@ -56,11 +75,21 @@ function reducer(state: State, action: Action): State {
 
     case 'REMOVE': {
       const { [action.id]: _removed, ...rest } = state.items;
-      return { items: rest };
+      return { ...state, items: rest };
     }
 
     case 'CLEAR':
-      return { items: {} };
+      return {
+        items: {},
+        delivery: state.delivery,
+        paymentMethod: state.paymentMethod,
+      };
+
+    case 'SET_DELIVERY':
+      return { ...state, delivery: action.delivery };
+
+    case 'SET_PAYMENT':
+      return { ...state, paymentMethod: action.method };
 
     default:
       return state;
@@ -93,6 +122,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setQty: (id, qty) => dispatch({ type: 'SET_QTY', id, qty }),
       remove: (id) => dispatch({ type: 'REMOVE', id }),
       clear: () => dispatch({ type: 'CLEAR' }),
+      setDelivery: (delivery) => dispatch({ type: 'SET_DELIVERY', delivery }),
+      setPaymentMethod: (method) => dispatch({ type: 'SET_PAYMENT', method }),
       totalItems,
       subtotalCents,
     }),

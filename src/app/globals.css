@@ -17,6 +17,7 @@
   --color-brand-purple: #8047f8;
   --color-brand-purple-dark: #4b2995;
   --color-brand-purple-light: #ebe5f9;
+  --color-accent-red: #e45b5b;
 
   --color-card-ring: #d8d8d8;
   --color-card-ring-dark: #ffffff33;
@@ -47,6 +48,7 @@
   --color-brand-purple: #8047f8;
   --color-brand-purple-dark: #4b2995;
   --color-brand-purple-light: #ebe5f9;
+  --color-accent-red: #ff7b7b;
 
   --color-card-ring: #ffffff2e;
   --color-card-ring-dark: #ffffff33;
@@ -61,10 +63,23 @@
 }
 
 body {
-  background: var(--color-base-background);
+  background:
+    linear-gradient(180deg, rgba(128, 71, 248, 0.12) 0%, rgba(255, 255, 255, 0) 55%, rgba(128, 71, 248, 0.08) 100%),
+    radial-gradient(circle at 8% 15%, rgba(128, 71, 248, 0.16), transparent 35%),
+    radial-gradient(circle at 88% 10%, rgba(219, 172, 44, 0.12), transparent 30%),
+    radial-gradient(1200px circle at 50% -10%, rgba(255, 255, 255, 0.18), transparent 45%),
+    var(--color-base-background);
   color: var(--color-base-text);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at 8% 15%, rgba(128, 71, 248, 0.22), transparent 32%),
+    radial-gradient(circle at 88% 10%, rgba(219, 172, 44, 0.18), transparent 28%),
+    radial-gradient(1100px circle at 50% -10%, rgba(255, 255, 255, 0.06), transparent 40%),
+    var(--color-base-background);
 }
 
 h1,
@@ -122,4 +137,37 @@ button {
       rgba(255, 255, 255, 0.04)
     ),
     var(--color-card-surface);
+}
+
+.glass-panel {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(235, 229, 249, 0.75)
+    ),
+    rgba(255, 255, 255, 0.25);
+  box-shadow: 0 18px 45px var(--color-shadow);
+  border: 1px solid var(--color-card-ring);
+}
+
+.dark .glass-panel {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12),
+      rgba(255, 255, 255, 0.08)
+    ),
+    rgba(255, 255, 255, 0.06);
+  border-color: var(--color-card-ring-dark);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

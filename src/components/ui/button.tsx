@@ -7,9 +7,11 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-brand-600 text-white hover:brightness-95',
-        secondary: 'bg-zinc-800 text-zinc-50 hover:bg-zinc-700',
-        ghost: 'bg-transparent text-zinc-50 hover:bg-zinc-800',
+        primary:
+          'bg-[color:var(--color-brand-purple)] text-white shadow-[0_12px_35px_rgba(128,71,248,0.28)] hover:bg-brand-purple-dark',
+        secondary:
+          'border border-base-hover bg-base-card text-base-title hover:border-brand-purple hover:text-brand-purple',
+        ghost: 'bg-transparent text-base-title hover:bg-brand-purple/10',
       },
       size: {
         sm: 'h-10 px-4 text-sm',
