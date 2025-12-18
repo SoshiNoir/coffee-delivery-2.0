@@ -77,9 +77,7 @@ export default function Home() {
               qualquer hora, com uma experiência elegante.
             </p>
 
-            {/* Mobile: 2 perks per glass, 2 glasses (cols) */}
             <div className='grid grid-cols-1 gap-2 sm:gap-3 sm:grid-cols-2 lg:grid-cols-2'>
-              {/* Mobile layout: group perks into pairs per glass */}
               {Array.from({ length: Math.ceil(perks.length / 2) }).map(
                 (_, glassIndex) => {
                   const perkPair = perks.slice(
@@ -89,7 +87,7 @@ export default function Home() {
                   return (
                     <div
                       key={`glass-${glassIndex}`}
-                      className='rounded-2xl border border-[color:var(--color-card-ring)] bg-[linear-gradient(145deg,rgba(255,255,255,0.32),rgba(255,255,255,0.16))] px-3 sm:px-4 py-3 sm:py-4 shadow-[0_14px_32px_var(--color-shadow)] ring-1 ring-white/35 backdrop-blur-3xl transition hover:shadow-[0_18px_40px_var(--color-shadow-strong)] dark:border-[color:var(--color-card-ring-dark)] dark:bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] dark:ring-white/12 sm:hidden'
+                      className='rounded-2xl border border-(--color-card-ring) bg-[linear-gradient(145deg,rgba(255,255,255,0.32),rgba(255,255,255,0.16))] px-3 sm:px-4 py-3 sm:py-4 shadow-[0_14px_32px_var(--color-shadow)] ring-1 ring-white/35 backdrop-blur-3xl transition hover:shadow-[0_18px_40px_var(--color-shadow-strong)] dark:border-(--color-card-ring-dark) dark:bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] dark:ring-white/12 sm:hidden'
                     >
                       <div className='grid grid-cols-2 gap-2 sm:gap-3'>
                         {perkPair.map(({ icon: Icon, text, color }) => (
@@ -113,12 +111,11 @@ export default function Home() {
                 }
               )}
 
-              {/* Desktop: 2 items per row, text on the side */}
               <div className='hidden sm:contents'>
                 {perks.map(({ icon: Icon, text, color }) => (
                   <div
                     key={text}
-                    className='flex items-center gap-2 lg:gap-3 rounded-2xl border border-[color:var(--color-card-ring)] bg-[linear-gradient(145deg,rgba(255,255,255,0.32),rgba(255,255,255,0.16))] px-2 lg:px-3 py-2 lg:py-3 text-base-subtitle shadow-[0_14px_32px_var(--color-shadow)] ring-1 ring-white/35 backdrop-blur-3xl transition hover:shadow-[0_18px_40px_var(--color-shadow-strong)] dark:border-[color:var(--color-card-ring-dark)] dark:bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] dark:ring-white/12'
+                    className='flex items-center gap-2 lg:gap-3 rounded-2xl border border-(--color-card-ring) bg-[linear-gradient(145deg,rgba(255,255,255,0.32),rgba(255,255,255,0.16))] px-2 lg:px-3 py-2 lg:py-3 text-base-subtitle shadow-[0_14px_32px_var(--color-shadow)] ring-1 ring-white/35 backdrop-blur-3xl transition hover:shadow-[0_18px_40px_var(--color-shadow-strong)] dark:border-(--color-card-ring-dark) dark:bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.06))] dark:ring-white/12'
                   >
                     <span
                       className={`flex h-8 lg:h-10 w-8 lg:w-10 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,rgba(128,71,248,0.3),rgba(75,41,149,0.26))] text-white shadow-[0_14px_30px_rgba(128,71,248,0.28)] ring-1 ring-white/35 backdrop-blur ${color}`}
@@ -134,13 +131,13 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='order-1 relative flex h-[280px] w-full items-center justify-center sm:h-[380px] lg:order-2 lg:h-[560px]'>
+          <div className='order-1 relative flex h-70 w-full items-center justify-center sm:h-95 lg:order-2 lg:h-140'>
             <div
-              className='absolute bottom-6 left-1/2 h-44 w-[280px] -translate-x-1/2 -rotate-6 rounded-[140px] bg-gradient-to-br from-brand-yellow/90 via-brand-yellow/60 to-brand-purple/35 shadow-[0_26px_70px_var(--color-shadow)] blur-[1px] animate-[float_6s_ease-in-out_infinite]'
+              className='absolute bottom-6 left-1/2 h-44 w-70 -translate-x-1/2 -rotate-6 rounded-[140px] bg-linear-to-br from-brand-yellow/90 via-brand-yellow/60 to-brand-purple/35 shadow-[0_26px_70px_var(--color-shadow)] blur-[1px] animate-[float_6s_ease-in-out_infinite]'
               aria-hidden
             />
             <div
-              className='absolute bottom-2 left-1/2 h-44 w-[300px] -translate-x-1/2 rounded-[120px] border-2 border-white/70 shadow-[0_12px_28px_rgba(0,0,0,0.12)] backdrop-blur-md animate-[float_5.5s_ease-in-out_infinite]'
+              className='absolute bottom-2 left-1/2 h-44 w-75 -translate-x-1/2 rounded-[120px] border-2 border-white/70 shadow-[0_12px_28px_rgba(0,0,0,0.12)] backdrop-blur-md animate-[float_5.5s_ease-in-out_infinite]'
               aria-hidden
             />
 
@@ -150,7 +147,7 @@ export default function Home() {
               width={540}
               height={540}
               priority
-              className='relative z-10 -mb-4 w-[280px] max-w-none -rotate-[10deg] translate-y-4 drop-shadow-[0_32px_70px_rgba(0,0,0,0.28)] transition duration-700 ease-out animate-[float_5s_ease-in-out_infinite] sm:-mb-6 sm:w-[340px] sm:translate-y-6 lg:w-[480px] lg:-mb-10 lg:translate-y-10'
+              className='relative z-10 -mb-4 w-70 max-w-none -rotate-10 translate-y-4 drop-shadow-[0_32px_70px_rgba(0,0,0,0.28)] transition duration-700 ease-out animate-[float_5s_ease-in-out_infinite] sm:-mb-6 sm:w-85 sm:translate-y-6 lg:w-120 lg:-mb-10 lg:translate-y-10'
             />
           </div>
         </div>

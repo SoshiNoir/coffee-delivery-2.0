@@ -122,6 +122,15 @@ export const coffees: Coffee[] = [
     photo: 'irlandes.svg',
     priceCents: 990,
   },
+  {
+    id: 15,
+    tags: ['especial'],
+    name: 'Pumpkin Spice Latte',
+    description:
+      'Café expresso com chantilly e especiarias de torta de abóbora',
+    photo: 'pumpkin.png',
+    priceCents: 990,
+  }
 ];
 
 export function coffeeImageSrc(photo: string) {

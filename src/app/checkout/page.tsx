@@ -9,7 +9,7 @@ import { Banknote, CreditCard, MapPin, Wallet, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 function formatBRL(cents: number) {
   return (cents / 100).toFixed(2).replace('.', ',');
@@ -22,8 +22,8 @@ const PAYMENT_OPTIONS: {
   label: string;
   icon: React.ElementType;
 }[] = [
-  { value: 'credit', label: 'Cartão de crédito', icon: CreditCard },
-  { value: 'debit', label: 'Cartão de débito', icon: Banknote },
+  { value: 'credit', label: 'CartÃ£o de crÃ©dito', icon: CreditCard },
+  { value: 'debit', label: 'CartÃ£o de dÃ©bito', icon: Banknote },
   { value: 'cash', label: 'Dinheiro', icon: Wallet },
 ];
 
@@ -53,21 +53,6 @@ export default function Checkout() {
   const [city, setCity] = useState(() => state.delivery?.city ?? '');
   const [state_, setState] = useState(() => state.delivery?.state ?? '');
 
-  useEffect(() => {
-    if (state.delivery) {
-      setCep(state.delivery.cep ?? '');
-      setStreet(state.delivery.street ?? '');
-      setNumber(state.delivery.number ?? '');
-      setComplement(state.delivery.complement ?? '');
-      setNeighborhood(state.delivery.neighborhood ?? '');
-      setCity(state.delivery.city ?? '');
-      setState(state.delivery.state ?? '');
-    }
-    if (state.paymentMethod) {
-      setPayment(state.paymentMethod);
-    }
-  }, [state.delivery, state.paymentMethod]);
-
   const items = Object.values(state.items);
   const shippingCents = items.length > 0 ? 390 : 0;
   const totalCents = useMemo(
@@ -91,13 +76,13 @@ export default function Checkout() {
   };
 
   const inputClass =
-    'w-full rounded-xl border border-[color:var(--color-card-ring)] bg-white/28 px-3 py-2 text-base-title placeholder:text-base-label shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_25px_var(--color-shadow)] ring-1 ring-[color:var(--color-card-ring)] backdrop-blur-2xl outline-none transition focus:border-brand-purple focus:ring-2 focus:ring-[color:var(--color-brand-purple)] focus:shadow-[0_0_0_4px_rgba(128,71,248,0.18)] dark:bg-white/8 dark:text-base-title';
+    'w-full rounded-xl border border-(--color-card-ring) bg-white/28 px-3 py-2 text-base-title placeholder:text-base-label shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_10px_25px_var(--color-shadow)] ring-1 ring-(--color-card-ring) backdrop-blur-2xl outline-none transition focus:border-brand-purple focus:ring-2 focus:ring-(--color-brand-purple) focus:shadow-[0_0_0_4px_rgba(128,71,248,0.18)] dark:bg-white/8 dark:text-base-title';
 
   const chipClass = (value: PaymentMethod) =>
     `inline-flex items-center gap-2 rounded-xl border px-3 py-3 text-sm font-semibold shadow-[0_12px_28px_var(--color-shadow)] backdrop-blur-2xl transition ${
       payment === value
-        ? 'border-brand-purple/70 bg-[linear-gradient(135deg,rgba(128,71,248,0.28),rgba(75,41,149,0.22))] text-[color:var(--color-brand-purple)] ring-2 ring-[color:var(--color-brand-purple)] shadow-[0_12px_34px_rgba(128,71,248,0.28)]'
-        : 'border-[color:var(--color-card-ring)] bg-white/24 text-base-text hover:border-brand-purple/60 hover:bg-brand-purple/8 dark:bg-white/8 dark:text-base-title'
+        ? 'border-brand-purple/70 bg-[linear-gradient(135deg,rgba(128,71,248,0.28),rgba(75,41,149,0.22))] text-(--color-brand-purple) ring-2 ring-(--color-brand-purple) shadow-[0_12px_34px_rgba(128,71,248,0.28)]'
+        : 'border-(--color-card-ring) bg-white/24 text-base-text hover:border-brand-purple/60 hover:bg-brand-purple/8 dark:bg-white/8 dark:text-base-title'
     }`;
 
   return (
@@ -109,12 +94,12 @@ export default function Checkout() {
 
         <GlassCard className='relative overflow-hidden space-y-6 p-6'>
           <div
-            className='pointer-events-none absolute inset-[1px] rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
+            className='pointer-events-none absolute inset-px rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
             aria-hidden
           />
           <div className='flex items-start gap-3'>
             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-brand-purple/10 text-brand-purple'>
-              <MapPin className='h-5 w-5 text-[color:var(--color-brand-purple)]' />
+              <MapPin className='h-5 w-5 text-(--color-brand-purple)' />
             </div>
             <div>
               <h2 className='font-semibold text-base-title'>
@@ -180,7 +165,7 @@ export default function Checkout() {
 
         <GlassCard className='relative overflow-hidden space-y-4 p-6'>
           <div
-            className='pointer-events-none absolute inset-[1px] rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
+            className='pointer-events-none absolute inset-px rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
             aria-hidden
           />
           <div className='flex items-start gap-3'>
@@ -218,7 +203,7 @@ export default function Checkout() {
 
         <GlassCard className='relative overflow-hidden space-y-5 p-6'>
           <div
-            className='pointer-events-none absolute inset-[1px] rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
+            className='pointer-events-none absolute inset-px rounded-[20px] border border-white/30 shadow-[0_1px_0_rgba(255,255,255,0.25)_inset] dark:border-white/8'
             aria-hidden
           />
           {items.length === 0 ? (
@@ -228,7 +213,7 @@ export default function Checkout() {
               {items.map(({ coffee, quantity }) => (
                 <div
                   key={coffee.id}
-                  className='flex items-center justify-between gap-3 rounded-2xl border border-[color:var(--color-card-ring)] bg-white/24 p-3 shadow-[0_12px_28px_var(--color-shadow)] ring-1 ring-[color:var(--color-card-ring)] backdrop-blur-2xl dark:bg-white/6'
+                  className='flex items-center justify-between gap-3 rounded-2xl border border-(--color-card-ring) bg-white/24 p-3 shadow-[0_12px_28px_var(--color-shadow)] ring-1 ring-(--color-card-ring) backdrop-blur-2xl dark:bg-white/6'
                 >
                   <div className='flex items-center gap-3 min-w-0'>
                     <div className='relative h-14 w-14 overflow-hidden rounded-xl bg-base-background'>
@@ -269,7 +254,7 @@ export default function Checkout() {
             </div>
           )}
 
-          <div className='space-y-2 border-t border-[color:var(--color-card-ring)] pt-3 text-sm'>
+          <div className='space-y-2 border-t border-(--color-card-ring) pt-3 text-sm'>
             <div className='flex justify-between text-base-text'>
               <span>Itens</span>
               <span className='font-semibold text-base-title'>
@@ -317,5 +302,3 @@ export default function Checkout() {
     </div>
   );
 }
-
-
