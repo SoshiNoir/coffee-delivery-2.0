@@ -93,7 +93,7 @@ export default function Success() {
                   {paymentMethod
                     ? paymentLabels[paymentMethod]
                     : 'Não informado'}{' '}
-                  Confirmado
+                  - Pagar na entrega
                 </p>
               </div>
             </div>
