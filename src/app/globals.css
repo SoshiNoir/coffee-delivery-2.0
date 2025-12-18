@@ -1,31 +1,68 @@
 @import 'tailwindcss';
 
 :root {
-  --background: #fafafa;
-  --foreground: #272221;
-  --text: #574f4d;
-  --title: #272221;
+  --color-base-background: #fafafa;
+  --color-base-card: #f3f2f2;
+  --color-base-white: #ffffff;
+  --color-base-title: #272221;
+  --color-base-subtitle: #403937;
+  --color-base-text: #364153;
+  --color-base-label: #8d8686;
+  --color-base-hover: #d7d5d5;
+  --color-base-button: #e6e5e5;
+  --color-base-input: #ededed;
+
+  --color-brand-yellow: #dbac2c;
+  --color-brand-yellow-dark: #c47f17;
+  --color-brand-purple: #8047f8;
+  --color-brand-purple-dark: #4b2995;
+  --color-brand-purple-light: #ebe5f9;
+
+  --color-card-ring: #d8d8d8;
+  --color-card-ring-dark: #ffffff33;
+  --color-card-offset: #f5f3f1;
+  --color-card-offset-dark: #0f0f14;
+  --color-shadow: #0000001a;
+  --color-shadow-strong: #00000026;
+  --color-card-surface: #ffffffb8;
+
   --selection-bg: #ebe5f9;
   --selection-text: #403937;
 }
 
 .dark {
-  --background: #0d0d11;
-  --foreground: #f5f5f5;
-  --text: #e7e7e7;
-  --title: #fdfdfd;
+  --color-base-background: #0d0d11;
+  --color-base-card: #27272a;
+  --color-base-white: #18181b;
+  --color-base-title: #f5f5f5;
+  --color-base-subtitle: #e0e0e0;
+  --color-base-text: #c7c7c7;
+  --color-base-label: #a1a1aa;
+  --color-base-hover: #3f3f46;
+  --color-base-button: #3f3f46;
+  --color-base-input: #52525b;
+
+  --color-brand-yellow: #dbac2c;
+  --color-brand-yellow-dark: #c47f17;
+  --color-brand-purple: #8047f8;
+  --color-brand-purple-dark: #4b2995;
+  --color-brand-purple-light: #ebe5f9;
+
+  --color-card-ring: #ffffff2e;
+  --color-card-ring-dark: #ffffff33;
+  --color-card-offset: #0f0f14;
+  --color-card-offset-dark: #0f0f14;
+  --color-shadow: #00000059;
+  --color-shadow-strong: #00000073;
+  --color-card-surface: #1a1a21c2;
+
   --selection-bg: #4b2995;
   --selection-text: #fdfdfd;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-}
-
 body {
-  background: var(--background);
-  color: var(--text);
+  background: var(--color-base-background);
+  color: var(--color-base-text);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -33,7 +70,7 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--title);
+  color: var(--color-base-title);
   font-family: var(--font-title), var(--font-body), sans-serif;
   letter-spacing: -0.02em;
 }
@@ -45,4 +82,44 @@ h3 {
 
 button {
   cursor: pointer;
+}
+
+.card-ring {
+  border: 1px solid var(--color-card-ring);
+  box-shadow: 0 14px 40px var(--color-shadow);
+  transition: transform 340ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 360ms ease;
+}
+
+.card-ring:hover {
+  box-shadow: 0 22px 55px var(--color-shadow-strong);
+}
+
+.dark .card-ring {
+  border-color: var(--color-card-ring-dark);
+  box-shadow: 0 14px 40px var(--color-shadow);
+}
+
+.dark .card-ring:hover {
+  box-shadow: 0 22px 55px var(--color-shadow-strong);
+}
+
+.glass-card {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.65),
+      rgba(255, 255, 255, 0.5)
+    ),
+    var(--color-card-surface);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+}
+
+.dark .glass-card {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.04)
+    ),
+    var(--color-card-surface);
 }

@@ -7,16 +7,12 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 function ThemeToggle() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    const prefersDark =
-      typeof window !== 'undefined' &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const stored = localStorage.getItem('theme');
-    const initial = (stored as 'light' | 'dark' | null) ?? (prefersDark ? 'dark' : 'light');
-    setTheme(initial);
-  }, []);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window === 'undefined') return 'light';
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const stored = localStorage.getItem('theme') as 'light' | 'dark' | null;
+    return stored ?? (prefersDark ? 'dark' : 'light');
+  });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -68,7 +64,9 @@ export function Header() {
           >
             <ShoppingBag className='h-5 w-5' />
             {totalItems > 0 && (
-              <span className='absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-purple text-[11px] font-bold text-white ring-2 ring-base-background'>
+              <span
+                className='absolute -right-2 -top-2 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-base-button text-[11px] font-bold leading-none text-brand-purple shadow-[0_0_0_2px_var(--color-base-background)] ring-2 ring-brand-purple'
+              >
                 {totalItems}
               </span>
             )}
