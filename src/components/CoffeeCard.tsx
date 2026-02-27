@@ -24,7 +24,7 @@ export function CoffeeCard({ coffee, onAdd }: CoffeeCardProps) {
 
   const price = useMemo(
     () => formatBRL(coffee.priceCents),
-    [coffee.priceCents]
+    [coffee.priceCents],
   );
 
   const increment = () => setQuantity((q) => q + 1);
@@ -52,7 +52,7 @@ export function CoffeeCard({ coffee, onAdd }: CoffeeCardProps) {
           alt={coffee.name}
           fill
           priority
-          className='origin-center scale-[1.02] object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.18)] transition-transform duration-700 ease-out group-hover:rotate-[50deg]'
+          className='origin-center scale-[1.02] object-contain drop-shadow-[0_16px_28px_rgba(0,0,0,0.18)] transition-transform duration-700 ease-out group-hover:rotate-50'
         />
       </div>
 
@@ -68,10 +68,10 @@ export function CoffeeCard({ coffee, onAdd }: CoffeeCardProps) {
           ))}
         </div>
 
-        <h3 className='mt-5 font-(--font-title) text-xl text-base-title break-words'>
+        <h3 className='mt-5 font-(--font-title) text-xl text-base-title wrap-break-word'>
           {coffee.name}
         </h3>
-        <p className='mt-2 text-sm text-base-text/90 break-words'>
+        <p className='mt-2 text-sm text-base-text/90 wrap-break-word'>
           {coffee.description}
         </p>
       </div>
@@ -96,7 +96,7 @@ export function CoffeeCard({ coffee, onAdd }: CoffeeCardProps) {
             onClick={() => onAdd(quantity)}
             className={cn(
               glassIconClass,
-              'h-10 w-11 text-white ring-white/35 dark:ring-white/15'
+              'h-10 w-11 text-white ring-white/35 dark:ring-white/15',
             )}
             aria-label='Adicionar ao carrinho'
           >
